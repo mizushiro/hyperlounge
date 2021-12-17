@@ -1262,22 +1262,21 @@ body.step7 .srv-item.n8.on .unit-wrap {
 
 /* service 9 */
 .srv-item.n9 {
-    height: calc(100vh - 31.1rem);
+    height:100vh;
     background: black;
     z-index: 12;
-}
-
-.srv-item.n9 .unit-wrap {
-    top: 0;
-    bottom: auto;
-    position: relative;
-    height: auto;
-    padding: 20rem 0 10rem;
 }
 
 /* body.step8 .srv-item.n9.on .unit-wrap{
     position: fixed;
 } */
+.srv-item.n9 .register {
+    position: absolute;
+    top: 50%;
+    left:0;
+    right:0;
+    transform: translatey(-50%);
+}
 .unit-wrap .register {
     text-align: center;
     font-weight: 700;
@@ -1972,6 +1971,17 @@ body.step7 .srv-item.n8.on .unit-wrap {
 
     .srv-icon.n10 {
         transform: translate(21vw, -29vh);
+    }
+    .srv-item.n9 .unit-wrap {
+        top: 0;
+        bottom: auto;
+        position: relative;
+        height: auto;
+        padding: 20rem 0 10rem;
+    }
+    .srv-item.n9 .register {
+        position: static;
+        transform: translatey(0);
     }
 
     .boxlist {
