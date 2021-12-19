@@ -10,6 +10,7 @@
 			const el_nav = doc.querySelector('.nav-link');
             const el_navbtn = el_nav.querySelectorAll('button');
 			const el_appstore = doc.querySelector('#appstoreToggle');
+			const el_appstore2 = doc.querySelector('#appstoreToggle2');
 			const btn_menu = doc.querySelector('.btn-menu');
 			const btn_close = doc.querySelector('.btn-close');
 			const firstpage = 'service';
@@ -22,12 +23,14 @@
 				callback: function(){
                     HyperloungeUI.parallax.init(firstpage);
 					el_html.classList.add('page-' + firstpage);
+					Splitting();
 				}
 			});
 
 			btn_menu.addEventListener('click', HyperloungeUI.common.naveOpen);
 			btn_close.addEventListener('click', HyperloungeUI.common.naveClose);
 			el_appstore.addEventListener('click', appStoreDiv);
+			el_appstore2.addEventListener('click', appStoreDiv);
 
             for (let i = 0, len = el_navbtn.length; i < len; i++) {
                 const that = el_navbtn[i];
@@ -35,12 +38,14 @@
                 that.addEventListener('click', pageGO);
             }
 
-			function appStoreDiv() {
-				const wrap = doc.querySelector('.appstore');
-				
+			function appStoreDiv(e) {
+				const btn = e.currentTarget;
+				const toggle = btn.dataset.toggle;
+				const wrap = doc.querySelector('.appstore[data-toggle="'+toggle+'"]');
+				console.log(wrap);
 				wrap.classList.toggle('on');
 			}
-
+			
             function pageGO() {
                 const that = this;
                 HyperloungeUI.ajax.init({ 
@@ -56,16 +61,18 @@
                         el_html.classList.remove('page-service');
                         el_html.classList.remove('page-overview');
                         el_html.classList.remove('page-apply');
+						el_html.classList.remove('scroll');
                         el_html.classList.add('page-' + that.dataset.link);
 						el_header.classList.remove('type-b');
 						el_header.classList.remove('type-c');
 						HyperloungeUI.common.naveClose();
 						window.removeEventListener('scroll', HyperloungeUI.parallax.act);
 						HyperloungeUI.parallax.init(that.dataset.link);
+
+						that.dataset.link === 'service' ? Splitting() : '';
 						window.scrollTo({
 							top: 0,
-							left: 0,
-							behavior: 'smooth'
+							left: 0
 						});                       
                     }
                 });
