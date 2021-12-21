@@ -278,10 +278,12 @@
 
 			if (v === 'service') {
 				setTimeout(function(){
-					console.log('line');
 					doc.querySelector('.srv-item.n1 .line').classList.add('act');
-					doc.querySelector('.page-service').classList.add('scroll')
+					setTimeout(function(){
+						doc.querySelector('.page-service').classList.add('scroll');
+					},600);
 				},2400);
+				
 			}
 
 			setTimeout(function(){
@@ -319,6 +321,24 @@
 				el_body.classList.add('step' + (nowPs - 1));
 			}
 			
+			const scrollarrow = doc.querySelector('.scroll-arrow');
+			const topbtn = doc.querySelector('.btn-top');
+
+			topbtn && topbtn.addEventListener('click', function(){
+				window.scrollTo({
+					top: 0,
+					left: 0,
+					behavior: 'smooth'
+				});    
+			});
+
+			if (wT > 100) {
+				scrollarrow.classList.add('off');
+				topbtn.classList.add('on');
+			} else {
+				scrollarrow.classList.remove('off');
+				topbtn.classList.remove('on');
+			}  
 			//service.html
 			if (page === 'service') {
 				service(cutline, nowPs);
@@ -350,8 +370,10 @@
 					} else {
 						if (st > itemTop - vh && st < itemTop - vh + s ) {
 							that.style.transform = 'translateY('+ nn +'px)';
+							that.classList.remove('on');
 						} else if (st > itemTop - vh + s )  {
 							that.style.transform = 'translateY(0px)';
+							that.classList.add('on');
 						}
 					}
 				}
@@ -375,9 +397,10 @@
                 let scene;
 				let cutpoint;
 				let l;
-				let opacityValue;
-				let opacityValue2;
-				let opacityValue3;
+				let itemMotion;
+				let itemMotion2;
+				let itemMotion3;
+				let itemMotion4;
 
 				const isOn = wrap.classList.contains('on');
 				const isReady = wrap.classList.contains('ready');
@@ -386,7 +409,6 @@
 
 				switch (n) {
 					case 1:
-						scene = (minH - wH) / 10;
 						if (cutline < minH) {
 							if (isReadyNext) {
 								wrapNext.classList.remove('ready');
@@ -404,7 +426,6 @@
 						break;
 
 					case 2:
-						scene = (minH - wH) / 10;
 
 						if (cutline > maxH - wH) {
 							if (!isReady) {
@@ -432,25 +453,24 @@
 
 						cutpoint = maxH;
 						l = (cutline - cutpoint);
-						opacityValue = l * 0.005;
-						opacityValue2 = (l - 300) * 0.005;
-						opacityValue3 = (l - 600) * 0.005;
+						itemMotion = l * 0.005;
+						itemMotion2 = (l - 300) * 0.005;
+						itemMotion3 = (l - 600) * 0.005;
 
-						opacityValue < 0 ? 
-							opacityValue = 0 : opacityValue > 1 ? opacityValue = 1 : '';
-						opacityValue2 < 0 ? 
-							opacityValue2 = 0 : opacityValue2 > 1 ? opacityValue2 = 1 : '';
-						opacityValue3 < 0 ? 
-							opacityValue3 = 0 : opacityValue3 > 1 ? opacityValue3 = 1 : '';
+						itemMotion < 0 ? 
+							itemMotion = 0 : itemMotion > 1 ? itemMotion = 1 : '';
+						itemMotion2 < 0 ? 
+							itemMotion2 = 0 : itemMotion2 > 1 ? itemMotion2 = 1 : '';
+						itemMotion3 < 0 ? 
+							itemMotion3 = 0 : itemMotion3 > 1 ? itemMotion3 = 1 : '';
 
-						unit[0].style.opacity = opacityValue + 0.1;
-						unit[1].style.opacity = opacityValue2 + 0.1;
-						unit[2].style.opacity = opacityValue3 + 0.1;	
+						unit[0].style.opacity = itemMotion + 0.1;
+						unit[1].style.opacity = itemMotion2 + 0.1;
+						unit[2].style.opacity = itemMotion3 + 0.1;	
 
 						break;
 
 					case 3:
-						scene = (minH - wH) / 10;
 						
 						if (cutline > maxH - wH) {
 							if (!isReady) {
@@ -479,25 +499,24 @@
 
 						cutpoint = maxH;
 						l = (cutline - cutpoint);
-						opacityValue = l * 0.005;
-						opacityValue2 = (l - 300) * 0.005;
-						opacityValue3 = (l - 600) * 0.005;
+						itemMotion = l * 0.005;
+						itemMotion2 = (l - 300) * 0.005;
+						itemMotion3 = (l - 600) * 0.005;
 
-						opacityValue < 0 ? 
-							opacityValue = 0 : opacityValue > 1 ? opacityValue = 1 : '';
-						opacityValue2 < 0 ? 
-							opacityValue2 = 0 : opacityValue2 > 1 ? opacityValue2 = 1 : '';
-						opacityValue3 < 0 ? 
-							opacityValue3 = 0 : opacityValue3 > 1 ? opacityValue3 = 1 : '';
+						itemMotion < 0 ? 
+							itemMotion = 0 : itemMotion > 1 ? itemMotion = 1 : '';
+						itemMotion2 < 0 ? 
+							itemMotion2 = 0 : itemMotion2 > 1 ? itemMotion2 = 1 : '';
+						itemMotion3 < 0 ? 
+							itemMotion3 = 0 : itemMotion3 > 1 ? itemMotion3 = 1 : '';
 
-						unit[0].style.opacity = opacityValue + 0.1;
-						unit[1].style.opacity = opacityValue2 + 0.1;
-						unit[2].style.opacity = opacityValue3 + 0.1;
+						unit[0].style.opacity = itemMotion + 0.1;
+						unit[1].style.opacity = itemMotion2 + 0.1;
+						unit[2].style.opacity = itemMotion3 + 0.1;
 
 						break;
 
 					case 4 :
-						scene = (minH - wH) / 10;
 						
 						if (cutline > maxH - wH) {
 							if (!isReady) {
@@ -570,7 +589,6 @@
 						break;
 
 					case 5:
-						scene = (minH - wH) / 10;
 						
 						if (cutline > maxH - wH) {
 							if (!isReady) {
@@ -614,22 +632,77 @@
 							console.log(5);
 						}
 
-						opacityValue = (wH / 5) - ((cutline - cutpoint) * 3);
-						opacityValue2 = (wH / 3) - ((cutline - cutpoint) * 2);
-						opacityValue3 = (wH / 2) - ((cutline - cutpoint) * 1.2);
+						itemMotion = (wH / 5) - ((cutline - cutpoint) * 3);
+						itemMotion2 = (wH / 3) - ((cutline - cutpoint) * 2);
+						itemMotion3 = (wH / 2) - ((cutline - cutpoint) * 1.2);
+						itemMotion4 = (wH / 2) - ((cutline - cutpoint) * 0.8);
 
-						opacityValue < 0 ? opacityValue = 0 : opacityValue > wH ? opacityValue = wH: '';
-						opacityValue2 < 0 ? opacityValue2 = 0 : opacityValue2 > wH ? opacityValue2 = wH: '';
-						opacityValue3 < 0 ? opacityValue3 = 0 : opacityValue3 > wH ? opacityValue3 = wH: '';
+						itemMotion < 0 ? itemMotion = 0 : itemMotion > wH ? itemMotion = wH: '';
+						itemMotion2 < 0 ? itemMotion2 = 0 : itemMotion2 > wH ? itemMotion2 = wH: '';
+						itemMotion3 < 0 ? itemMotion3 = 0 : itemMotion3 > wH ? itemMotion3 = wH: '';
+						itemMotion4 < 0 ? itemMotion4 = 0 : itemMotion4 > wH ? itemMotion4 = wH: '';
 							
-						unit[0].style.transform = 'translate(0,'+ opacityValue +'px)';
-						unit[1].style.transform = 'translate(0,'+ opacityValue2 +'px)';
-						unit[2].style.transform = 'translate(0,'+ opacityValue3 +'px)';
+						unit[0].style.transform = 'translate(0,'+ itemMotion +'px)';
+						unit[1].style.transform = 'translate(0,'+ itemMotion2 +'px)';
+						unit[2].style.transform = 'translate(0,'+ itemMotion3 +'px)';
+						unit[3].style.transform = 'translate(0,'+ itemMotion4 +'px)';
 						
 						break;
 
 					case 6:
-						scene = (minH - wH) / 10;
+						
+						if (cutline > maxH - wH) {
+							if (!isReady) {
+								wrap.classList.add('ready');
+								console.log(1);
+								// header.classList.remove('type-c');
+							}
+						} 
+						if (cutline < maxH + minH) {
+							if (isReadyNext) {
+								wrapNext.classList.remove('ready');
+								console.log(2);
+							}
+						} 
+						if (cutline > maxH) {
+							if (!isOn) {
+								wrapPrev.classList.add('off');
+								wrap.classList.remove('ready');
+								wrap.classList.remove('off');
+								wrap.classList.add('on');
+
+								header.classList.add('type-b');
+								header.classList.remove('type-c');
+								console.log(3);
+							}
+						} else {
+							if (!!isOn) {
+								wrapPrev.classList.remove('ready');
+								wrapPrev.classList.remove('off');
+								wrap.classList.remove('on');
+								header.classList.add('type-c');
+								header.classList.remove('type-b');
+								console.log(4);
+							}
+						}
+
+						cutpoint = maxH;
+
+						itemMotion = (wH / 5) - ((cutline - cutpoint) * 3);
+						itemMotion2 = (wH / 3) - ((cutline - cutpoint) * 2);
+			
+
+						itemMotion < 0 ? itemMotion = 0 : itemMotion > wH ? itemMotion = wH: '';
+						itemMotion2 < 0 ? itemMotion2 = 0 : itemMotion2 > wH ? itemMotion2 = wH: '';
+						
+							
+						unit[0].style.transform = 'translate(0,'+ itemMotion +'px)';
+						unit[1].style.transform = 'translate(0,'+ itemMotion2 +'px)';
+					
+						
+						break;
+
+					case 7:
 						
 						if (cutline > maxH - wH) {
 							if (!isReady) {
@@ -662,17 +735,17 @@
 						}
 
 						cutpoint = maxH;
-						opacityValue = (wH / 3) - ((cutline - cutpoint) * 3);
-						opacityValue2 = (wH / 2) - ((cutline - cutpoint) * 2);
+						itemMotion = (wH / 3) - ((cutline - cutpoint) * 3);
+						itemMotion2 = (wH / 2) - ((cutline - cutpoint) * 2);
 
-						opacityValue < 0 ? opacityValue = 0 : opacityValue > wH ? opacityValue = wH: '';
-						opacityValue2 < 0 ? opacityValue2 = 0 : opacityValue2 > wH ? opacityValue2 = wH: '';
+						itemMotion < 0 ? itemMotion = 0 : itemMotion > wH ? itemMotion = wH: '';
+						itemMotion2 < 0 ? itemMotion2 = 0 : itemMotion2 > wH ? itemMotion2 = wH: '';
 							
-						unit[0].style.transform = 'translate(0,'+ opacityValue +'px)';
-						unit[1].style.transform = 'translate(0,'+ opacityValue2 +'px)';
+						unit[0].style.transform = 'translate(0,'+ itemMotion +'px)';
+						unit[1].style.transform = 'translate(0,'+ itemMotion2 +'px)';
 						break;
 
-					case 7:
+					case 8:
 						scene = (minH - wH) / 10;
 
 						const card = item.querySelector('.card-list');
@@ -702,6 +775,8 @@
 								wrap.classList.remove('on');
 							}
 						}
+
+						console.log(card, cardw)
 						
 						cutpoint = maxH;
 						card.style.transform = 'translateX('+ (cardw * 0) +')';
@@ -720,7 +795,7 @@
 						}
 						break;
 
-					case 8:
+					case 9:
 						//scene = (pH - maxH - wH) / 10;
 
 						if (cutline > maxH - wH) {
