@@ -46,6 +46,16 @@
     url('./fonts/SpoqaHanSansNeo-Thin.ttf') format('truetype');
 }
 
+
+@font-face {
+    font-family: 'Helvetica Neue';
+    src: local('Helvetica Neue'),
+    url('./fonts/HelveticaNeueCyr-Bold.woff2') format('woff2'),
+    url('./fonts/HelveticaNeueCyr-Bold.woff') format('woff'),
+    url('./fonts/HelveticaNeueCyr-Bold.ttf') format('truetype');
+    font-weight: 700;
+}
+
 @font-face {
     font-family: 'Spoqa Han Sans Neo';
     src: local('Helvetica Neue'),
@@ -683,6 +693,7 @@ select::-ms-expand {
     font-size: 13vmin;
     line-height: 1.0;
     letter-spacing: -.4vmin;
+    font-family: 'Helvetica Neue';
 }
 
 .eff-title .write .word {
