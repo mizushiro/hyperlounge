@@ -116,6 +116,7 @@ body {
     -webkit-tap-highlight-color: transparent;
     unit-break: keep-all;
     -webkit-font-smoothing: subpixel-antialiased;
+    -webkit-text-stroke:1px transparent;
 }
 
 body,
