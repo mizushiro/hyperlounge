@@ -296,6 +296,7 @@
 		act: function(){
             const el_body = doc.querySelector('body');
 			const el_html = doc.querySelector('html');
+			const el_header = doc.querySelector('.base-header');
 			const clsname = el_body.getAttribute('class');
 			const wH = window.innerHeight;
 			const wT = Math.floor(window.pageYOffset);
@@ -329,7 +330,12 @@
 					top: 0,
 					left: 0,
 					behavior: 'smooth'
-				});    
+				});
+				setTimeout(function(){
+					el_header.classList.remove('type-b');
+					el_header.classList.remove('type-c');
+				},0);
+				
 			});
 
 			if (wT > 100) {
