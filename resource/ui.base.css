@@ -1446,7 +1446,8 @@ body.step7 .srv-item.n8.on .unit-wrap {
     font-size: 1.7rem;
     color: #888;
     line-height: 2.8rem;
-    margin-top: 1.6rem
+    margin-top: 1.6rem;
+    word-break: keep-all;
 }
 
 .contact-data {
