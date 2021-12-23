@@ -48,9 +48,8 @@
 
 
 @font-face {
-    font-family: 'Helvetica Neue';
-    src: local('Helvetica Neue'),
-    url('./fonts/HelveticaNeueCyr-Bold.woff2') format('woff2'),
+    font-family: 'helveticaneuecyrbold';
+    src: url('./fonts/HelveticaNeueCyr-Bold.woff2') format('woff2'),
     url('./fonts/HelveticaNeueCyr-Bold.woff') format('woff'),
     url('./fonts/HelveticaNeueCyr-Bold.ttf') format('truetype');
     font-weight: 700;
@@ -694,7 +693,7 @@ select::-ms-expand {
     font-size: 13vmin;
     line-height: 1.0;
     letter-spacing: -.4vmin;
-    font-family: 'Helvetica Neue';
+    font-family: 'helveticaneuecyrbold';
 }
 
 .eff-title .write .word {
