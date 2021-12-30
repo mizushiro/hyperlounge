@@ -427,30 +427,59 @@
 				
 				for (let i = 0, len = item.length; i < len; i++) {
 					const that = item[i];
-					const delay = Number(that.dataset.delay);
+					let delay = Number(that.dataset.delay);
 					const counter = that.dataset.conuteritem;
 					const speed = that.dataset.speed;
 					const itemTop = that.getBoundingClientRect().top + st;
 					const n = st - (itemTop - vh);
-					const s = 150;
+					const s = 300;
 					let nn = s - n;
 
-					if (st > itemTop - (vh + (vh / 10)) && st < itemTop - (vh + (vh / 10)) + s ) {
-						if (!!delay) {
-							nn = nn * delay;
+					const x = vh / 5;
+
+					if (Global.state.device.mobile) {
+						if (i === 0) {
+							console.log(st, itemTop - vh - x ,  itemTop - vh + x)
 						}
+						
+						if (st > itemTop - vh && st < itemTop - vh + x ) {
 
-						(!!counter) && Global.number.counterReset(counter);
+							// if (!!delay) {
+							// 	nn = nn * delay;
+							// }
+	
+							(!!counter) && Global.number.counterReset(counter);
+	
+							that.style.transform = 'translateY('+ nn +'px)';
+							that.classList.remove('on');
+	
+						} else if (st > itemTop - vh + x )  {
+							that.style.transform = 'translateY(0px)';
+							that.classList.add('on');
+	
+							(!!counter) && Global.number.counter(counter, speed);
+						}
+					} else {
+						if (st > itemTop - (vh ) && st < itemTop - (vh ) + x ) {
 
-						that.style.transform = 'translateY('+ nn +'px)';
-						that.classList.remove('on');
-
-					} else if (st > itemTop - (vh + (vh / 10)) + s )  {
-						that.style.transform = 'translateY(0px)';
-						that.classList.add('on');
-
-						(!!counter) && Global.number.counter(counter, speed);
+							if (!!delay) {
+								nn = nn * delay;
+							}
+	
+							(!!counter) && Global.number.counterReset(counter);
+	
+							that.style.transform = 'translateY('+ nn +'px)';
+							that.classList.remove('on');
+	
+						} else if (st > itemTop - (vh + (vh / 10)) + x )  {
+							that.style.transform = 'translateY(0px)';
+							that.classList.add('on');
+	
+							(!!counter) && Global.number.counter(counter, speed);
+						}
 					}
+
+					
 				}
             }
 		}
